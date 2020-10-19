@@ -1,0 +1,78 @@
+Count vec + NB:
+                 precision    recall  f1-score   support
+
+Mixed_feelings        0.73      0.18      0.29        44
+      Negative        0.77      0.53      0.63        51
+      Positive        0.75      0.78      0.77       224
+ not-malayalam        0.65      0.88      0.75        60
+ unknown_state        0.68      0.75      0.71       161
+
+       accuracy                           0.71       540
+      macro avg       0.71      0.63      0.63       540
+   weighted avg       0.72      0.71      0.70       540
+
+Count vec + LR
+                 precision    recall  f1-score   support
+
+Mixed_feelings        0.53      0.36      0.43        44
+      Negative        0.57      0.59      0.58        51
+      Positive        0.73      0.78      0.76       224
+ not-malayalam        0.75      0.80      0.77        60
+ unknown_state        0.69      0.66      0.67       161
+
+       accuracy                           0.69       540
+      macro avg       0.65      0.64      0.64       540
+   weighted avg       0.69      0.69      0.69       540
+
+TFIDF + NB:
+                 precision    recall  f1-score   support
+
+Mixed_feelings        0.73      0.18      0.29        44
+      Negative        0.77      0.53      0.63        51
+      Positive        0.75      0.78      0.77       224
+ not-malayalam        0.65      0.88      0.75        60
+ unknown_state        0.68      0.75      0.71       161
+
+       accuracy                           0.71       540
+      macro avg       0.71      0.63      0.63       540
+   weighted avg       0.72      0.71      0.70       540
+
+TFIDF + LR:
+                 precision    recall  f1-score   support
+
+Mixed_feelings        0.46      0.30      0.36        44
+      Negative        0.64      0.63      0.63        51
+      Positive        0.73      0.79      0.76       224
+ not-malayalam        0.80      0.78      0.79        60
+ unknown_state        0.70      0.69      0.69       161
+
+       accuracy                           0.71       540
+      macro avg       0.67      0.64      0.65       540
+   weighted avg       0.70      0.71      0.70       540
+
+BERT + MLP:
+                 precision    recall  f1-score   support
+
+Mixed_feelings        0.58      0.25      0.35        44
+      Negative        0.50      0.39      0.44        51
+      Positive        0.70      0.75      0.73       224
+ not-malayalam        0.73      0.73      0.73        60
+ unknown_state        0.67      0.75      0.70       161
+
+       accuracy                           0.67       540
+      macro avg       0.64      0.58      0.59       540
+   weighted avg       0.67      0.67      0.66       540
+
+FASTTEXT + MLP:
+                 precision    recall  f1-score   support
+
+Mixed_feelings        0.67      0.05      0.09        44
+      Negative        0.54      0.27      0.36        51
+      Positive        0.61      0.74      0.67       224
+ not-malayalam        0.67      0.83      0.74        60
+ unknown_state        0.65      0.66      0.66       161
+
+       accuracy                           0.63       540
+      macro avg       0.63      0.51      0.50       540
+   weighted avg       0.63      0.63      0.60       540
+
