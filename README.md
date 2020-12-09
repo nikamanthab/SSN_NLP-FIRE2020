@@ -1,4 +1,4 @@
-# Forum For Information Retrival (FIRE) 2020
+# Forum For Information Retrival (FIRE) 2020 Submission Files
 ### Website: http://fire.irsi.res.in/fire/2020/home
 ### Team: SSNCSE_NLP
 ### TASKS
