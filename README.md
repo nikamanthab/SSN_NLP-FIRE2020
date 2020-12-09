@@ -15,3 +15,4 @@
   - scikit-learn==0.21.3
   - Keras==2.2.4
   - tensorflow==1.14.0
+  - rank-bm25==0.2.1
