@@ -1,12 +1,12 @@
 # Forum For Information Retrival (FIRE) 2020
 ### Website: http://fire.irsi.res.in/fire/2020/home
 ### Team: SSNCSE_NLP
-### Codemix
-  - Task Site for dataset and details: https://dravidian-codemix.github.io/2020/index.html
-
-### HASOC
-  - Task Site for dataset and details: https://sites.google.com/view/dravidian-codemix-fire2020/overview
-
+### TASKS
+  - Codemix Sentiment Analysis: https://dravidian-codemix.github.io/2020/index.html
+  - HASOC: https://sites.google.com/view/dravidian-codemix-fire2020/overview
+  - AI-SOCO: https://sites.google.com/view/ai-soco-2020 
+  - AILA: https://sites.google.com/view/aila-2020
+  - UrduFake: https://www.urdufake2020.cicling.org/home
 ### Requirements:
   - sentence Transformers: https://github.com/UKPLab/sentence-transformers
   - Pymagnitude: https://github.com/plasticityai/magnitude
