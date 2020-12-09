@@ -1,3 +1,7 @@
+'''
+Runs for CodeMix HASOC task2 malayalam
+authors: Nitin Nikamanth Appiah Balaji, Bharathi B
+'''
 import pandas as pd
 import numpy as np
 from sklearn.metrics import classification_report
@@ -8,9 +12,17 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.model_selection import cross_validate
 import random
 
+'''
+Data Set Loading
+Train, development and test datasets
+'''
 train = pd.read_csv('../data/Malayalam_offensive_data_Training-YT.csv')
 test = pd.read_csv('../HASOC-Dravidian-CodeMix/Task2/malayalam_hasoc_tanglish_test_without_labels.tsv','\t', names=['ID','Tweets'])
 
+'''
+Balancing the dataset classes
+Random duplication of lower count classes till both classes have equal number of samples
+'''
 offensive = train[train['Labels'] == 'OFF']
 while(list(train['Labels'].value_counts())[0]>list(train['Labels'].value_counts())[1]):
     df = pd.DataFrame()
@@ -21,6 +33,10 @@ while(list(train['Labels'].value_counts())[0]>list(train['Labels'].value_counts(
     
 print(train['Labels'].value_counts())
 
+'''
+Generating char TFIDF vectorization and converting sentences to vectors
+char TFIDF ngram range=1-5
+'''
 vectorizer = TfidfVectorizer(analyzer='char', ngram_range=(1,5))
 X = vectorizer.fit_transform(train['Tweets'])
 y = [1 if x=='NOT' else 0 for x in train['Labels']]
@@ -35,7 +51,10 @@ print('recall:',np.average(scores['test_recall_macro']))
 print('f1:',np.average(scores['test_f1_macro']))
 print('acc:',np.average(scores['test_accuracy']))
 
-#Count vectorization
+'''
+Generating char count vectorization and converting sentences to vectors
+char count ngram range=1-5
+'''
 vectorizer = CountVectorizer(analyzer='char', ngram_range=(1,5))
 X = vectorizer.fit_transform(train['Tweets'])
 y = [1 if x=='NOT' else 0 for x in train['Labels']]
@@ -50,7 +69,9 @@ print('recall:',np.average(scores['test_recall_macro']))
 print('f1:',np.average(scores['test_f1_macro']))
 print('acc:',np.average(scores['test_accuracy']))
 
-#BERT
+'''
+multilingual BERT model loading and embedding generation
+'''
 from sentence_transformers import SentenceTransformer
 model = SentenceTransformer('distiluse-base-multilingual-cased')
 X_train = model.encode(list(train['Tweets']), batch_size=32,show_progress_bar=True)

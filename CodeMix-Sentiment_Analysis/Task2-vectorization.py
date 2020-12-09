@@ -1,3 +1,7 @@
+'''
+Runs for CodeMIx Sentiment Analysis task2
+authors: Nitin Nikamanth Appiah Balaji, Bharahti B
+'''
 from sklearn.metrics import f1_score, accuracy_score
 from sklearn.neural_network import MLPClassifier
 from sklearn.naive_bayes import BernoulliNB
@@ -11,6 +15,9 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from tqdm import tqdm
 
+'''
+Loading data-sets
+'''
 train = pd.read_csv('../codemix-corpus-fire2020/malayalam_train.tsv','\t')
 dev = pd.read_csv('../codemix-corpus-fire2020/malayalam_dev.tsv','\t')
 test = pd.read_csv('../Dravidian-CodeMix/malayalam_test.csv')
@@ -19,7 +26,10 @@ X_train_ori, y_train = train['text'], train['category']
 X_dev_ori, y_dev = dev['text'], dev['category']
 X_test_ori, y_test = test['text'], dev['category']
 
-#Count Vectorizer
+'''
+Generating char count vectorization and converting sentences to vectors
+char count ngram range=1-5
+'''
 vectorizer = CountVectorizer(analyzer='char', ngram_range=(1,5), max_features=50000)
 X_train = vectorizer.fit_transform(X_train_ori)
 X_dev = vectorizer.transform(X_dev_ori)
@@ -41,7 +51,10 @@ print("Count vec + LR")
 # print("acc:",accuracy_score(y_dev, pred))
 print(classification_report(y_dev, pred))
 
-#TFIDF Vectorizer
+'''
+Generating char TFIDF vectorization and converting sentences to vectors
+char TFIDF ngram range=1-5
+'''
 vectorizer = TfidfVectorizer(analyzer='char', ngram_range=(1,5), max_features=50000)
 X_train = vectorizer.fit_transform(X_train_ori)
 X_dev = vectorizer.transform(X_dev_ori)
@@ -63,7 +76,9 @@ print("TFIDF + LR:")
 # print("acc:",accuracy_score(y_dev, pred))
 print(classification_report(y_dev, pred))
 
-# BERT
+'''
+multilingual BERT model loading and embedding generation
+'''
 test = pd.read_csv('../Dravidian-CodeMix/malayalam_test.csv')
 model = SentenceTransformer('distiluse-base-multilingual-cased',device='cuda:1')
 X_train = model.encode(X_train_ori, batch_size=20,show_progress_bar=True)
@@ -78,7 +93,9 @@ print("BERT + MLP:")
 # print("acc:",accuracy_score(y_dev, pred))
 print(classification_report(y_dev, pred))
 
-#FASTTEXT
+'''
+Loading Malayalam specific pretrained fastText model
+'''
 from pymagnitude import *
 from nltk import word_tokenize
 fast = Magnitude("../downloads/malayalam.magnitude")

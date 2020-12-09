@@ -1,3 +1,7 @@
+'''
+Runs for CodeMIx Sentiment Analysis task1
+authors: Nitin Nikamanth Appiah Balaji, Bharahti B
+'''
 from sklearn.neural_network import MLPClassifier
 from sklearn.naive_bayes import BernoulliNB
 from sklearn.linear_model import LogisticRegression
@@ -10,6 +14,9 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from tqdm import tqdm
 
+'''
+Loading data-sets
+'''
 train = pd.read_csv('../codemix-corpus-fire2020/tamil_train.tsv','\t')
 dev = pd.read_csv('../codemix-corpus-fire2020/tamil_dev.tsv','\t')
 test = pd.read_csv('../Dravidian-CodeMix/tamil_test.csv')
@@ -18,7 +25,10 @@ X_train_ori, y_train = train['text'], train['category']
 X_dev_ori, y_dev = dev['text'], dev['category']
 X_test_ori, y_test = test['text'], dev['category']
 
-# Count Vectorization
+'''
+Generating char count vectorization and converting sentences to vectors
+char count ngram range=2-3
+'''
 vectorizer = CountVectorizer(analyzer='char', ngram_range=(2,3),max_features=50000)
 X_train = vectorizer.fit_transform(X_train_ori)
 X_dev = vectorizer.transform(X_dev_ori)
@@ -41,7 +51,10 @@ print("Count vectorization + NB:")
 # print("acc:",accuracy_score(y_dev, pred))
 print(classification_report(y_dev, pred))
 
-# TFIDF Vectorization
+'''
+Generating char TFIDF vectorization and converting sentences to vectors
+char TFIDF ngram range=2-3
+'''
 vectorizer = TfidfVectorizer(analyzer='char', ngram_range=(2,3),max_features=50000)
 X_train = vectorizer.fit_transform(X_train_ori)
 X_dev = vectorizer.transform(X_dev_ori)
@@ -63,7 +76,9 @@ print("TFIDF vectorization + NB:")
 # print("acc:",accuracy_score(y_dev, pred))
 print(classification_report(y_dev, pred))
 
-# BERT
+'''
+multilingual BERT model loading and embedding generation
+'''
 test = pd.read_csv('../Dravidian-CodeMix/tamil_test.csv')
 model = SentenceTransformer('distiluse-base-multilingual-cased',device='cuda:1')
 X_train = model.encode(X_train_ori, batch_size=20,show_progress_bar=True)
@@ -78,7 +93,9 @@ print("BERT + MLP:")
 # print("acc:",accuracy_score(y_dev, pred))
 print(classification_report(y_dev, pred))
 
-#FASTTEXT
+'''
+Loading Tamil specific pretrained fastText model
+'''
 from pymagnitude import *
 from nltk import word_tokenize
 fast = Magnitude("../downloads/tamil.magnitude")

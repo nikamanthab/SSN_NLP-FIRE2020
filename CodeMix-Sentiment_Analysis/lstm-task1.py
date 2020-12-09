@@ -1,3 +1,7 @@
+'''
+LSTM Run for Code Mix Sentiment Analysis task1
+authors: Nitin Nikamanth Appiah Balaji, Bharathi B
+'''
 import mkl
 mkl.set_num_threads(36)
 import pandas as pd
@@ -42,7 +46,7 @@ print('Shape of data tensor:', X_dev.shape)
 X_test = tokenizer.texts_to_sequences(test['text'].values)
 X_test = pad_sequences(X_test, maxlen=MAX_SEQUENCE_LENGTH)
 
-#look upon#################################################
+
 y_train = []
 for i in train['category']:
     if i == 'Positive ':
@@ -55,7 +59,7 @@ for i in train['category']:
         y_train.append([0,0,0,1,0])
     elif i == 'not-Tamil ':
         y_train.append([0,0,0,0,1])
-# y_train = pd.get_dummies(train['category'][:]).values
+
 y_train = np.array(y_train)
 print('Shape of label tensor:', y_train.shape)
 
@@ -72,7 +76,7 @@ for i in dev['category']:
     elif i == 'not-Tamil ':
         y_dev.append([0,0,0,0,1])
 y_dev = np.array(y_dev)
-# y_dev = pd.get_dummies(dev['category'][:]).values
+
 print('Shape of label tensor:', y_dev.shape)
 
 

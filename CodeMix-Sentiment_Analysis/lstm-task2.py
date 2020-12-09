@@ -1,3 +1,8 @@
+'''
+LSTM Run for Code Mix Sentiment Analysis task2
+authors: Nitin Nikamanth Appiah Balaji, Bharathi B
+'''
+
 import mkl
 mkl.set_num_threads(36)
 import pandas as pd
@@ -40,7 +45,7 @@ print('Shape of data tensor:', X_dev.shape)
 X_test = tokenizer.texts_to_sequences(test['text'].values)
 X_test = pad_sequences(X_test, maxlen=MAX_SEQUENCE_LENGTH)
 
-#look upon#################################################
+
 y_train = []
 for i in train['category']:
     if i == 'Positive ':
